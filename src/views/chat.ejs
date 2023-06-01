@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ChatApp</title>
+        <link rel="stylesheet" href="style.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="../variables.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="left">
+                <div class="user">
+                    <img class="profilePhoto" src="../Files/sin-foto.png" alt="Foto de perfil" />
+                    <div class="nickname" data-nickname=""></div>
+                    <span class="material-icons menu" title="Menú" onclick="toggleMenu()" tabindex="0">more_vert</span>
+                    <div id="menu-options" class="menu-options">
+                        <label class="menu-option">Modo oscuro<input type="checkbox" onchange="toggleDarkMode()" /></label>
+                        <p class="menu-option" onclick="showUserModal()">Mi perfil</p>
+                        <a class="menu-option" href="/logout">Cerrar sesión</a>
+                    </div>
+                </div>
+                <div class="createChannel">
+                    <button class="button saveButton" onclick="showChannelModal()">Crear canal</button>
+                </div>
+                <div class="channels"></div>
+            </div>
+            <div class="right">
+                <div class="messageBox welcome">
+                    <img class="logo" src="../Files/logo-completo.png" alt="logo" />
+                    <p>Envía mensajes de texto, fotos y videos de manera segura y rápida. Mantén conversaciones individuales o grupales.</p>
+                </div>
+                <div class="messageInputBox">
+                  <span class="material-icons" title="Inserta un archivo" tabindex="0">add_circle</span>
+                    <input class="messageInput" type="text" placeholder="Escribe un mensaje aquí" onkeydown="if (event.key === 'Enter') sendMessage()" oninput="updateSendButton()"/>
+                    <span class="material-icons send"title="Envía el mensaje" onclick="sendMessage()">send</span>
+                </div>
+            </div>
+        </div>
+        <dialog class="modal userModal">
+            <div class="content">
+                <p class="title">Mi perfil</p>
+                <form class="mainDiv" novalidate>
+                    <div class="left">
+                        <label tabindex="0" class="photoLabel">
+                            <input class="photoInput" type="file" name="photo" hidden/>
+                            <img class="photoDisplay" src="../Files/sin-foto.png" alt="Subir archivo" />
+                        </label>
+                    </div>
+                    <div class="right">
+                        <div class="inputBox">
+                            <input type="text" name="nickname" required/>
+                            <span>Apodo</span>
+                        </div>
+                        <div class="inputBox">
+                            <input type="text" name="email" required/>
+                            <span>Correo electrónico</span>
+                        </div>
+                        <div class="inputBox">
+                            <input type="password" name="password" required />
+                            <span>Cambiar contraseña</span>
+                            <div class="material-icons seePassword" onclick="togglePasswordVisibility()" alt="Ver contraseña">visibility</div>
+                        </div>
+                        <div class="inputBox">
+                            <input type="password" name="passwordConfirmation" required />
+                            <span>Repetir contraseña</span>
+                        </div>
+                    </div>
+                </form>
+                <div class="buttonsDiv">
+                    <button type="button" class="button" onclick="closeUserModal()">Cancelar</button>
+                    <button type="button" class="button saveButton" onclick="saveUserModal()">Aceptar</button>
+                </div>
+            </div>
+        </dialog>
+        <dialog class="modal channelModal">
+            <div class="content">
+                <form class="mainDiv" novalidate>
+                    <div class="left">
+                        <div class="title">Información general</div>
+                        <label tabindex="0" class="photoLabel">
+                            <input class="channelPhotoInput photoInput" type="file" name="photo" hidden/>
+                            <img class="photoDisplay" src="../Files/grupo.png" alt="Subir archivo" />
+                        </label>
+                        <div class="inputBox">
+                            <input type="text" name="name" required />
+                            <span>Nombre</span>
+                        </div>
+                        <div class="inputBox">
+                            <input type="text" name="description" required />
+                            <span>Descripción</span>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="title title2">Participantes</div>
+                        <div class="administrate">
+                            <input class="participantInput" placeholder="Correo electrónico" type="text" required/>
+                            <button type="button" class="button saveButton addParticipantButton" onclick="addParticipantToList()">Añadir</button>
+                        </div>
+                        <div class="participantList">
+                            <div class="my participant">
+                                <img class="profilePhoto" src="../Files/sin-foto.png" alt="Foto de perfil" />
+                                <p name="participantName" class="name"></p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="buttonsDiv">
+                    <button type="button" class="button" onclick="closeChannelModal()">Cancelar</button>
+                    <button type="button" class="button saveButton" onclick="saveChannelModal()">Aceptar</button>
+                </div>
+            </div>
+        </dialog>
+        <script src="/socket.io/socket.io.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

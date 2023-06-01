@@ -1,0 +1,277 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Josefin Sans", sans-serif;
+    background-color: var(--color-body);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+form {
+    width: 90%;
+    max-width: 450px;
+    height: 450px;
+    margin: 50px auto;
+    background-color: var(--color-background-primary);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0px 0px 10px var(--color-terciary);
+    color: var(--color);
+}
+
+form .logo {
+    width: 90%;
+    margin: 30px auto 30px;
+    max-width: 350px;
+    user-select: none;
+}
+
+.dark-mode .logo {
+    filter: invert(100%);
+}
+
+form .inputBox {
+    position: relative;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+form .inputBox input {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 16px;
+    width: 100%;
+    height: 45px;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid var(--color-terciary);
+    background-color: transparent;
+    outline: none;
+    color: inherit;
+}
+
+form .inputBox span {
+    position: absolute;
+    left: 7px;
+    top: 16px;
+    pointer-events: none;
+    font-size: 1em;
+    color: #888;
+    transition: transform 0.2s;
+    padding: 0 10px;
+}
+
+.seePassword {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.2;
+}
+
+.seePassword:hover {
+    opacity: 0.8;
+}
+
+form .inputBox input:focus~span,
+form .inputBox input:valid~span {
+    color: var(--color-primary);
+    transform: translate(10px, -23px);
+    font-size: 0.85em;
+    background-color: var(--color-background-primary);
+}
+
+form .inputBox input:focus {
+    border: 1px solid var(--color-primary)
+}
+
+form .submit-button {
+    font-family: "Josefin Sans", sans-serif;
+    width: 65%;
+    height: 45px;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+form .submit-button:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+form .subtitle {
+    font-size: 18px;
+}
+
+form a, form a:visited {
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+form .inputBox input.invalidInput {
+    border: 1px solid red !important;
+}
+
+form .inputBox input.invalidInput~span {
+    color: red !important;
+}
+
+/* Checkbox del modo oscuro */
+.checkbox-wrapper-54 input[type="checkbox"] {
+    visibility: hidden;
+    display: none;
+}
+
+.checkbox-wrapper-54 *,
+.checkbox-wrapper-54 ::after,
+.checkbox-wrapper-54 ::before {
+    box-sizing: border-box;
+    position: absolute;
+    top: 40px;
+}
+
+.checkbox-wrapper-54 .switch {
+    --width-of-switch: 3.5em;
+    --height-of-switch: 2em;
+    --size-of-icon: 1.4em;
+    --slider-offset: 0.3em;
+    position: relative;
+    width: var(--width-of-switch);
+    height: var(--height-of-switch);
+    display: inline-block;
+}
+
+.checkbox-wrapper-54 .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f4f4f5;
+    transition: .4s;
+    border-radius: 30px;
+    border: 1px solid #888;
+}
+
+.checkbox-wrapper-54 .slider:before {
+    position: absolute;
+    content: "";
+    height: var(--size-of-icon, 1.4em);
+    width: var(--size-of-icon, 1.4em);
+    border-radius: 20px;
+    left: var(--slider-offset, 0.3em);
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+    transition: .4s;
+}
+
+.checkbox-wrapper-54 input:checked+.slider {
+    background-color: #303136;
+}
+
+.checkbox-wrapper-54 input:checked+.slider:before {
+    left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
+    background: #303136;
+    box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+
+.checkbox-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.toggle-switch {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+}
+
+.toggle-switch-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+    background-color: #ddd;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.toggle-switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    bottom: 2px;
+    border-radius: 50%;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.toggle-switch-input:checked+.toggle-switch-slider {
+    background-color: #2196F3;
+}
+
+.toggle-switch-input:checked+.toggle-switch-slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-background-primary) inset;
+    -webkit-text-fill-color: var(--color);
+}
+
+@media (max-width: 450px) {
+    .checkbox-wrapper-54 {
+        position: absolute;
+        top: 0; 
+    }
+    form {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        justify-content: center;
+        border-radius: 0;
+        gap: 50px;
+    }
+    form .inputBox {
+        width: 90%;
+    }
+    form .submit-button {
+        width: 90%;
+    }
+}

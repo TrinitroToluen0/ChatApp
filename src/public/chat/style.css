@@ -1,0 +1,705 @@
+
+* {
+    box-sizing: border-box;
+    font-family: "Josefin sans", Arial, Helvetica, sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: var(--chat-body);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: var(--color);
+}
+
+.dark-mode .logo {
+    filter: invert(100%);
+}
+
+.container {
+    width: 85%;
+    height: 95%;
+    display: flex;
+}
+
+.container .left {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--chat-background-primary);
+    border-right: 1px solid var(--color-soft);
+}
+
+.container .right {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.user {
+    position: relative;
+    height: 60px;
+    background-color: var(--color-background-secondary);
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.user .profilePhoto {
+    width: 45px;
+    border-radius: 50%;
+}
+
+.user .nickname {
+    margin-left: 20px;
+    width: 60%;
+    word-wrap: break-word;
+}
+
+.user .menu {
+    height: 25px;
+    position: absolute;
+    right: 15px;
+}
+
+img {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.material-icons {
+    cursor: pointer;
+    user-select: none;
+    color: inherit;
+    outline: none;
+}
+
+.material-icons:hover, .material-icons:focus {
+    background-color: rgba(136, 136, 136, 0.3);
+    box-shadow: 0 0 0 7px rgba(136, 136, 136, 0.3);
+    border-radius: 50%;
+    color: var(--color-primary);
+}
+
+.left .channels {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    gap: 10px;
+}
+
+.left .createChannel {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.left .createChannel .button {
+    width: 80%;
+}
+
+.channel {
+    width: 90%;
+    min-height: 70px;
+    border: 1px solid var(--color-soft);
+    display: flex;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+}
+
+.channel:focus-visible {
+    border-color: var(--color-primary);
+}
+
+.channel:hover {
+    background-color: var(--color-background-secondary);
+}
+
+.channel.selected {
+    background-color: var(--color-selected);
+}
+
+.channel .channelPhoto {
+    height: 45px;
+    border-radius: 50%;
+}
+
+/*Menú de opciones*/
+.menu-options {
+    display: none;
+    position: absolute;
+    top: 45px;
+    right: 25px;
+    background-color: var(--chat-background-primary);
+    border: 1px solid var(--color-soft);
+    width: 220px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    z-index: 1;
+    padding: 10px 0;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.menu-options.show {
+    opacity: 1;
+    display: block;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.menu-option {
+    margin: 0;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    height: 40px;
+    display: block;
+    padding: 12px 30px;
+    color: inherit;
+    position: relative;
+    user-select: none;
+}
+
+.menu-option:hover {
+    background-color: var(--color-background-secondary);
+}
+
+.right .channelHeader {
+    display: none;
+    width: 100%;
+    min-height: 60px;
+    height: 60px;
+    background-color: var(--color-background-secondary);
+    cursor: pointer;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.channelHeader .back {
+    display: none;
+}
+
+.channelHeader .channelPhoto {
+    height: 45px;
+    border-radius: 50%;
+}
+
+.channelHeader .channelInfo {
+    flex-grow: 1;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+.channelHeader .channelName {
+    padding: 0;
+    margin: 0;
+    height: 16px;
+    font-size: 18px;
+}
+
+.channelHeader .participants {
+    font-size: 0.8em;
+    color: #888;
+    padding: 0;
+    margin: 0;  
+    height: 16px;
+}
+
+.messageBox {
+    width: 100%;
+    flex-grow: 1;
+    background-color: var(--color-messageBox);
+    background-repeat: repeat;
+    overflow: auto;
+    padding: 20px;
+    position: relative;
+}
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-welcomeBox);
+}
+
+.welcome img {
+    width: 80%;
+}
+
+.welcome p {
+    margin-top: 60px;
+    color: #888;
+    text-align: center;
+    pointer-events: none;
+}
+
+.channelBox {
+    display: none;
+    background-image: var(--chatBackground)
+}
+
+/*Mensaje*/
+.message {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-background-primary);
+    border-radius: 15px;
+    min-width: 100px;
+    max-width: 90%;
+    margin-bottom: 10px;
+    clear: both;
+    padding: 10px;
+    float: left;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.message .author {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 32px;
+    align-items: center;
+}
+
+.message .authorPhoto {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.message .authorName {
+    font-weight: bold;
+}
+
+.message .content {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    min-height: 40px;
+    align-items: center;
+    word-wrap: break-word;
+}
+
+.message .date {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: right;
+    font-size: 0.8em;
+    color: #888;
+}
+
+.message.own {
+    background-color: var(--color-primary);
+    color: #fff;
+    float: right;
+}
+
+.message.own .author {
+    display: none;
+}
+
+.message.own .content {
+    min-height: 0;
+}
+
+.message.own .date {
+    color: #ebeef0;
+}
+
+.messageInputBox {
+    position: relative;
+    width: 100%;
+    min-height: 70px;
+    display: none;
+    align-items: center;
+    background-color: var(--color-background-secondary);
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.messageInputBox input {
+    height: 40px;
+    width: 70%;
+    border-radius: 5px;
+    flex-grow: 1;
+    border: none;
+    padding: 0 10px;
+    font-size: 18px;
+    color: inherit;
+    outline: none;
+    background-color: var(--chat-background-primary);
+}
+
+.messageInputBox .send {
+    margin-right: 10px;
+    pointer-events: none;
+    opacity: 0.1;
+    transition: opacity 0.2s;
+}
+
+/*UserModal y ChannelModal*/
+.modal {
+    border: none;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    color: inherit;
+    background-color: var(--chat-background-primary);
+}
+
+.userModal {
+    max-width: 600px;
+    max-height: 800px;
+}
+
+.channelModal {
+    max-height: 700px;
+    max-width: 900px;
+}
+
+.modal .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 24px;
+    text-align: center;
+}
+
+.channelModal .title {
+    height: 45px;
+    margin-bottom: 20px;
+}
+
+.channelModal .title2 {
+    margin-top: 40px;
+}
+
+.channelModal .mainDiv {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+}
+
+.userModal .mainDiv {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal .buttonsDiv {
+    min-height: 120px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.modal .left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.modal .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 55%;
+}
+
+.userModal .right {
+    width: 100%;
+    gap: 30px;
+}
+
+.channelModal .left {
+    width: 45%;
+}
+
+.modal .photoLabel {
+    outline: 2px dashed var(--color-primary);
+    overflow: hidden;
+    cursor: pointer;
+    display: inline-block;
+    width: 256px;
+    height: 256px;
+    border-radius: 50%;
+    margin-bottom: 30px;
+}
+
+.modal .photoDisplay {
+    width: 100%;
+    height: 100%;
+}
+
+.modal .inputBox {
+    position: relative;
+}
+
+.userModal .inputBox {
+    width: 80%;
+}
+
+.channelModal .inputBox {
+    width: 90%;
+}
+
+.modal .inputBox input {
+    font-size: 16px;
+    width: 100%;
+    height: 45px;
+    padding: 0 10px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--color-primary);
+    background-color: transparent;
+    color: inherit;
+}
+
+.modal .inputBox span {
+    position: absolute;
+    left: 7px;
+    top: 10px;
+    pointer-events: none;
+    color: #888;
+    transition: transform 0.2s, font-size 0.2s;
+    background-color: transparent;
+}
+
+.userModal .seePassword {
+    position: absolute;
+    height: 60%;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    opacity: 0.2;
+}
+
+.userModal .seePassword:hover {
+    opacity: 0.8;
+}
+
+.button {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: filter 0.3s;
+    height: 45px;
+    width: 40%;
+    font-size: 18px;
+    color: inherit;
+    border: 1px solid var(--color-primary);
+    background-color: transparent;
+}
+
+button:hover {
+    filter: brightness(92%);
+}
+
+.saveButton {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+.modal .inputBox input:focus ~ span,
+.modal .inputBox input:valid ~ span {
+    color: var(--color-primary);
+    border-bottom: var(--color-primary);
+    transform: translate(10px, -24px);
+    font-size: 0.75em;
+}
+
+.channelModal .left .inputBox {
+    margin-bottom: 30px;
+}
+
+.channelModal .administrate {
+    width: 90%;
+    height: 45px;
+    display: flex;
+    border: 1px solid #999;
+}
+
+.administrate input {
+    height: 100%;
+    flex-grow: 1;
+    border: none;
+    padding: 0 20px;
+    font-size: 16px;
+    color: inherit;
+    outline: none;
+    background-color: transparent;
+}
+
+.administrate:focus-within {
+    border: 1px solid var(--color-primary);
+}
+
+.administrate .addParticipantButton,
+.participant .removeParticipantButton {
+    width: 75px;
+    font-size: 16px;
+    border: none;
+    border-radius: 0;
+    height: 100%;
+}
+
+.participant .removeParticipantButton {
+    background-color: #f00;
+}
+
+.channelModal .participantList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    width: 100%;
+    flex-grow: 1;
+    padding: 0;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.participant {
+    height: 50px;
+    width: 90%;
+    display: flex;
+    border: 1px solid #888;
+    align-items: center;
+}
+
+.participant .profilePhoto {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.participant .name {
+    flex-grow: 1;
+}
+
+.channelModal .participantList .my {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.channelModal .participant .profilePhoto {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.menu .option {
+    margin: 0;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    height: 40px;
+    display: block;
+    padding: 12px 30px;
+    color: initial;
+    position: relative;
+    user-select: none;
+}
+
+.menu .option:hover {
+    background-color: var(--color-background-secondary);
+}
+@media (max-width: 1100px) {
+    .container {
+        width: 100%;
+        height: 100%;
+    }
+}
+@media (max-width: 800px) {
+    .container .left {
+        display: none;
+    }
+    .container .right {
+        width: 100%;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    .channelModal {
+        max-height: 1200px;
+    }
+
+    .channelModal .title2 {
+        margin-top: 60px;
+    }
+
+    .channelModal .mainDiv {
+        flex-direction: column;
+    }
+
+    .channelModal .mainDiv .left,
+    .channelModal .mainDiv .right {
+        width: 100%;
+        border-bottom: 1px solid var(--color-soft);
+        height: 600px;
+    }
+    .channelHeader .back {
+        display: block;
+    }
+}
+
+/* Estilos para el scrollbar */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--chat-background-primary) inset;
+    -webkit-text-fill-color: var(--color);
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ChatApp | Registrarse</title>
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="../variables.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+	<div class="checkbox-wrapper-54"><label class="switch"><input type="checkbox" class="dark-mode-toggle" onchange="toggleDarkMode()" ><span class="slider"></span></label></div>
+	<form novalidate>
+		<img class="logo" src="../Files/logo-completo.png" alt="logo">
+		<div class="inputBox">
+			<input type="text" id="nickname" class="nickname" autofocus required>
+			<span>Apodo</span>
+		</div>
+	
+		<div class="inputBox">
+			<input type="text" id="email" class="email" required>
+			<span>Correo electrónico</span>
+		</div>
+	
+		<div class="inputBox">
+			<input type="password" id="password" class="password" required>
+			<span>Contraseña</span>
+			<div class="material-icons seePassword" onclick="togglePasswordVisibility()" alt="Ver contraseña">visibility</div>
+		</div>
+	
+		<div class="inputBox">
+			<input type="password" id="passwordConfirmation" class="passwordConfirmation" required>
+			<span>Confirmar contraseña</span>
+		</div>
+
+		<button type="button" class="submit-button" onclick="register()">Registrarse</button>
+		<p class="subtitle">¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a></p>
+	</form>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+	<script src="script.js"></script>
+</body>
+</html>

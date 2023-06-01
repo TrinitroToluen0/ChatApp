@@ -1,0 +1,31 @@
+:root {
+    --color: #000;
+    --color-body: #f0f2f5;
+    --chat-body: #dedfdd;
+    --color-primary: #1877f2;
+    --color-terciary: #ccc;
+    --color-background-primary: #fff;
+    --chat-background-primary: #fff;
+    --color-background-secondary: #f0f2f5;
+    --color-selected: #d3d8e0;
+    --color-soft: #ebeef0;
+    --color-welcomeBox: #f0f2f5;
+    --color-messageBox: #efeae2;
+    --chatBackground: url("../Files/chat-background.png");
+}
+
+.dark-mode {
+    --color: #fff;
+    --color-body: #111322;
+    --chat-body: #000;
+    --color-primary: #997af1;
+    --color-terciary: #2b1b6c;
+    --color-background-primary: #000;
+    --chat-background-primary: #111;
+    --color-background-secondary: #222;
+    --color-selected: #333;
+    --color-soft: #222;
+    --color-welcomeBox: #10151d;
+    --color-messageBox: #10151d;
+    --chatBackground: url("../Files/chat-background-oscuro.png");
+}
