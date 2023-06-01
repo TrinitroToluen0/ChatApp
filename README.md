@@ -56,8 +56,8 @@ Express is a Node.js web application framework that simplifies web application d
 4. Go to the `config.js` file and configure a port.
 
 5. Set the following environment variables:
-- MONGO_URI=YourMongoDBURIHere
-- SESSION_SECRET=YourSessionSecretHere
+- MONGO_URI=`YourMongoDBURIHere`
+- SESSION_SECRET=`YourSessionSecretHere`
 
 6. Run the following command to start the application:
 
