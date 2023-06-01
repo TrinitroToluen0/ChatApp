@@ -160,7 +160,7 @@ function formatDate(timestamp) {
     const date = new Date(timestamp);
     const today = new Date();
     const oneDay = 24 * 60 * 60 * 1000;
-    const diffDays = Math.floor((today - date) / oneDay);
+    const diffDays = Math.abs(Math.round((today - date) / oneDay));
 
     let hour = date.getHours();
     let period = hour >= 12 ? "p. m." : "a. m.";
@@ -187,6 +187,7 @@ function formatDate(timestamp) {
 
     return formattedDate;
 }
+
 
 const channelsCache = {};
 async function selectChannel(selectedChannel) {

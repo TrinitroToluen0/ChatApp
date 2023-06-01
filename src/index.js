@@ -108,11 +108,11 @@ io.on("connection", async socket => {
 			messages: [{
 				id: createdMessage._id,
 				author: user._id,
-				content: message.content,
+				content: message,
 				date: Date.now(),
 			}],
 		};
 		io.in(channel).emit("renderData", dataObject);
-		console.log(`${user.nickname} > ${message.content}`);
+		console.log(`${user.nickname} > ${message}`);
 	});
 });

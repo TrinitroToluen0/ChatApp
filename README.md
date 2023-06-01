@@ -12,8 +12,8 @@ This is a real-time messaging application that allows you to create channels, re
 ## Features
 
 - Channel Creation: You can create chat channels for different topics or groups.
-- User Registration: Users can register in the application by providing their username, email, and password.
-- User Editing: Users can edit their profile, including their username, email, and profile picture.
+- User Registration: Users can register in the application by providing their nickname, email, and password.
+- User Editing: Users can edit their profile, including their nickname, email, password and profile picture.
 - Login: Users can log in to the application using their email and password.
 - Logout: Users can log out of the application to keep their account secure.
 - Profile Pictures: Users can upload and display profile pictures on their user profile.
