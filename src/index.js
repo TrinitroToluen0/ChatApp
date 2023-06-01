@@ -54,7 +54,10 @@ app.get("/", (req, res) => {
 
 // Verificar si la carpeta "Images" existe
 const imagesFolderPath = path.resolve(__dirname, "../Images");
-await fs.access(imagesFolderPath).then(() => true).catch(() => fs.mkdir(imagesFolderPath));
+await fs
+	.access(imagesFolderPath)
+	.then(() => true)
+	.catch(() => fs.mkdir(imagesFolderPath));
 
 //Redefinir las funciones console.log y console.error
 const logPath = path.join(__dirname, "logs", "console.log");
@@ -97,24 +100,19 @@ io.on("connection", async socket => {
 
 	socket.on("chat:message", async ({ message, channel }) => {
 		if (!isSocketInChannel(channel, socket)) return;
-		db.createMessage(channel, user._id, message)
-			.then(async message => {
-				const dataObject = {
-					type: "message",
-					channelId: channel,
-					position: "beforeend",
-					messages: [
-						{
-							id: message._id,
-							author: user._id,
-							content: message.content,
-							date: Date.now(),
-						},
-					],
-				};
-				io.in(channel).emit("renderData", dataObject);
-				console.log(`${user.nickname} > ${message.content}`);
-			})
-			.catch(e => console.error(e));
+		let message = await db.createMessage(channel, user._id, message);
+		const dataObject = {
+			type: "message",
+			channelId: channel,
+			position: "beforeend",
+			messages: [{
+				id: message._id,
+				author: user._id,
+				content: message.content,
+				date: Date.now(),
+			}],
+		};
+		io.in(channel).emit("renderData", dataObject);
+		console.log(`${user.nickname} > ${message.content}`);
 	});
 });
