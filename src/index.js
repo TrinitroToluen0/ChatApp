@@ -1,5 +1,5 @@
 // Inicializar el servidor express y requerir dependencias
-const config = require("../config.json")
+const config = require("../config.js")
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -12,7 +12,7 @@ const SocketIO = require("socket.io");
 
 // Usar express-sesion para manejar las sesiones
 const sessionMiddleware = session({
-    secret: config.sessionSecret,
+    secret: config.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
 });
@@ -32,8 +32,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Inicializar el servidor y establecer Socket.IO
-const server = app.listen(config.port, "0.0.0.0", () => {
-    console.log(`Servidor Express funcionando en http://0.0.0.0:${config.port}`);
+const server = app.listen(config.PORT, "0.0.0.0", () => {
+    console.log(`Servidor Express funcionando en http://0.0.0.0:${config.PORT}`);
 });
 const io = SocketIO(server);
 

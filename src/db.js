@@ -1,6 +1,7 @@
+const config = require("../config.js")
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
-const uri = "mongodb+srv://Mencoreh:RRyKUSz33lqXgkGm@cluster0.emhsybu.mongodb.net/ChatApp?retryWrites=true&w=majority";
+const uri = config.MONGO_URI;
 //CONEXIÓN A MONGODB
 mongoose
     .connect(uri, {
