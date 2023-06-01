@@ -52,13 +52,6 @@ app.get("/", (req, res) => {
 	res.redirect("/login");
 });
 
-// Verificar si la "Images" carpeta existe
-const folderPath = path.join(__dirname, 'Images');
-if (!fs.existsSync(folderPath)) {
-  fs.mkdirSync(folderPath);
-  console.log('La carpeta "Images" ha sido creada.');
-}
-
 //Redefinir las funciones console.log y console.error
 const logPath = path.join(__dirname, "logs", "console.log");
 const logStream = fs.createWriteStream(logPath, { flags: "a" });
@@ -75,6 +68,13 @@ console.error = message => logMessage(message, "stderr");
 
 // Manejar errores
 require("./errorHandler.js");
+
+// Verificar si la "Images" carpeta existe
+const folderPath = path.join(__dirname, 'Images');
+if (!fs.existsSync(folderPath)) {
+  fs.mkdirSync(folderPath);
+  console.log('La carpeta "Images" ha sido creada.');
+}
 
 io.use((socket, next) => {
 	sessionMiddleware(socket.request, socket.request.res, next);
