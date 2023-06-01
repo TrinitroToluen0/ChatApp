@@ -1,6 +1,6 @@
-# Aplicación de Mensajería
+# Messaging Application
 
-Esta es una aplicación de mensajería en tiempo real que te permite crear canales, registrar usuarios, editar usuarios, iniciar sesión, cerrar sesión y tener fotos de perfil. Está construida utilizando las siguientes tecnologías:
+This is a real-time messaging application that allows you to create channels, register users, edit users, log in, log out, and have profile pictures. It is built using the following technologies:
 
 - HTML
 - CSS
@@ -9,64 +9,64 @@ Esta es una aplicación de mensajería en tiempo real que te permite crear canal
 - Socket.IO
 - Express
 
-## Funcionalidades
+## Features
 
-- Creación de canales: Puedes crear canales de chat para diferentes temas o grupos.
-- Registro de usuarios: Los usuarios pueden registrarse en la aplicación proporcionando su nombre de usuario, correo electrónico y contraseña.
-- Edición de usuarios: Los usuarios pueden editar su perfil, incluyendo su nombre de usuario, correo electrónico y foto de perfil.
-- Inicio de sesión: Los usuarios pueden iniciar sesión en la aplicación utilizando su correo electrónico y contraseña.
-- Cierre de sesión: Los usuarios pueden cerrar sesión en la aplicación para mantener su cuenta segura.
-- Fotos de perfil: Los usuarios pueden cargar y mostrar fotos de perfil en su perfil de usuario.
+- Channel Creation: You can create chat channels for different topics or groups.
+- User Registration: Users can register in the application by providing their username, email, and password.
+- User Editing: Users can edit their profile, including their username, email, and profile picture.
+- Login: Users can log in to the application using their email and password.
+- Logout: Users can log out of the application to keep their account secure.
+- Profile Pictures: Users can upload and display profile pictures on their user profile.
 
-## Tecnologías Utilizadas
+## Technologies Used
 
 ### HTML
-HTML se utiliza para crear la estructura y el contenido de las páginas web de la aplicación.
+HTML is used to create the structure and content of the application's web pages.
 
 ### CSS
-CSS se utiliza para dar estilo y diseño a las páginas web de la aplicación, lo que permite personalizar la apariencia de los elementos y proporcionar una experiencia visual agradable.
+CSS is used to style and design the application's web pages, allowing customization of element appearance and providing a pleasant visual experience.
 
 ### JavaScript
-JavaScript se utiliza para agregar interactividad a la aplicación. Permite realizar acciones como enviar mensajes en tiempo real, validar formularios, gestionar eventos y actualizar dinámicamente el contenido de la página.
+JavaScript is used to add interactivity to the application. It enables actions such as sending real-time messages, validating forms, handling events, and dynamically updating page content.
 
 ### EJS (Embedded JavaScript)
-EJS es un motor de plantillas que permite generar dinámicamente HTML utilizando JavaScript. Se utiliza en esta aplicación para renderizar las vistas y mostrar los datos de manera dinámica.
+EJS is a template engine that allows dynamically generating HTML using JavaScript. It is used in this application to render views and dynamically display data.
 
 ### Socket.IO
-Socket.IO es una biblioteca de JavaScript que facilita la comunicación bidireccional en tiempo real entre el servidor y el cliente. Se utiliza en esta aplicación para habilitar el chat en tiempo real entre los usuarios.
+Socket.IO is a JavaScript library that facilitates bidirectional real-time communication between the server and the client. It is used in this application to enable real-time chat between users.
 
 ### Express
-Express es un marco de aplicaciones web de Node.js que simplifica el desarrollo de aplicaciones web. Se utiliza en esta aplicación para crear el servidor, manejar las rutas y controlar las solicitudes y respuestas HTTP.
+Express is a Node.js web application framework that simplifies web application development. It is used in this application to create the server, handle routes, and manage HTTP requests and responses.
 
-## Requisitos del Sistema
+## System Requirements
 
-- Navegador web moderno compatible con HTML5, CSS3 y JavaScript.
-- Node.js instalado en el entorno de desarrollo.
+- Modern web browser compatible with HTML5, CSS3, and JavaScript.
+- Node.js installed in the development environment.
 
-## Instalación
+## Installation
 
-1. Clona o descarga el repositorio de la aplicación.
-2. Abre una terminal y navega hasta el directorio raíz de la aplicación.
-3. Ejecuta el siguiente comando para instalar las dependencias:
+1. Clone the application repository.
+2. Open a terminal and navigate to the root directory of the application.
+3. Run the following command to install the dependencies:
 
    ```
    npm install
    ```
 
-4. Configura las variables de entorno necesarias, como la configuración de la base de datos o las claves de acceso.
+4. Go to the `config.js` file and configure a port.
 
-5. Ejecuta el siguiente comando para iniciar la aplicación:
+5. Set the following environment variables:
+- MONGO_URI=YourMongoDBURIHere
+- SESSION_SECRET=YourSessionSecretHere
+
+6. Run the following command to start the application:
 
    ```
    npm start
    ```
 
-6. Abre un navegador web y accede a la aplicación en `http://localhost:3000`.
+7. Open a web browser and access the application at `http://localhost:PORT`.
 
-## Contribuciones
+## Contributions
 
-Las contribuciones son bienvenidas. Si deseas colaborar en el desarrollo de esta aplicación, puedes enviar pull requests con tus mejoras, correcciones de errores u otras mejoras.
-
-## Licencia
-
-Este proyecto está bajo la Licencia [MIT](LICENSE). Si utilizas este código fuente, se agradece un reconocimiento o enlace al repositorio original.
+Contributions are welcome. If you would like to contribute to the development of this application, you can submit pull requests with your enhancements, bug fixes, or other improvements.
