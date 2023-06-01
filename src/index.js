@@ -52,12 +52,12 @@ app.get("/", (req, res) => {
 	res.redirect("/login");
 });
 
-// Verificar si la carpeta "Images" existe
-const imagesFolderPath = path.resolve(__dirname, "../Images");
-await fs
-	.access(imagesFolderPath)
-	.then(() => true)
-	.catch(() => fs.mkdir(imagesFolderPath));
+// Verificar si la "Images" carpeta existe
+const folderPath = path.join(__dirname, 'Images');
+if (!fs.existsSync(folderPath)) {
+  fs.mkdirSync(folderPath);
+  console.log('La carpeta "Images" ha sido creada.');
+}
 
 //Redefinir las funciones console.log y console.error
 const logPath = path.join(__dirname, "logs", "console.log");
@@ -100,13 +100,13 @@ io.on("connection", async socket => {
 
 	socket.on("chat:message", async ({ message, channel }) => {
 		if (!isSocketInChannel(channel, socket)) return;
-		let message = await db.createMessage(channel, user._id, message);
+		let createdMessage = await db.createMessage(channel, user._id, message);
 		const dataObject = {
 			type: "message",
 			channelId: channel,
 			position: "beforeend",
 			messages: [{
-				id: message._id,
+				id: createdMessage._id,
 				author: user._id,
 				content: message.content,
 				date: Date.now(),
