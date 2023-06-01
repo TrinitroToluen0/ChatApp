@@ -1,4 +1,4 @@
-# Messaging Application
+# ChatApp
 
 This is a real-time messaging application that allows you to create channels, register users, edit users, log in, log out, and have profile pictures. It is built using the following technologies:
 
