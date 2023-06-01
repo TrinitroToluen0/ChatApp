@@ -38,7 +38,7 @@ Socket.IO is a JavaScript library that facilitates bidirectional real-time commu
 ### Express
 Express is a Node.js web application framework that simplifies web application development. It is used in this application to create the server, handle routes, and manage HTTP requests and responses.
 
-### Expresss
+### MongoDB
 MongoDB: A NoSQL database used for storing and managing data in a flexible and scalable manner. It is used in this application to persist user information, chat messages, and other relevant data.
 
 ## System Requirements
