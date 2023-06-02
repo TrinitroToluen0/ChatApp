@@ -1,7 +1,7 @@
 module.exports = (app, db) => {
     //GET
     app.get("/messages", async (req, res) => {
-		// if (!req.session.user) return res.status(401).json({ error: "Usuario no autenticado." });
+		if (!req.session.user) return res.status(401).json({ error: "Usuario no autenticado." });
         try {
             const { channel, limit, offset } = req.query;
             const messages = await db.getMessages(channel, limit, offset);
