@@ -308,6 +308,7 @@ img {
     flex-direction: column;
     min-height: 40px;
     word-wrap: break-word;
+    justify-content: center;
 }
 
 
