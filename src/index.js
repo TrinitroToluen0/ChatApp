@@ -77,7 +77,7 @@ if (!fs.existsSync(folderPath)) {
 }
 
 io.use((socket, next) => {
-	sessionMiddleware(socket.request, socket.request.res, next);
+    sessionMiddleware(socket.request, {}, next);
 });
 
 io.on("connection", async socket => {
