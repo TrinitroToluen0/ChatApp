@@ -33,7 +33,7 @@ app.set("views", path.join(__dirname, "views"));
 
 // Inicializar el servidor y establecer Socket.IO
 const server = app.listen(config.PORT, "0.0.0.0", () => {
-	console.log(`Servidor Express funcionando en http://0.0.0.0:${config.PORT}`);
+	console.log(`Servidor Express funcionando en localhost:${config.PORT}`);
 });
 const io = SocketIO(server);
 
@@ -72,12 +72,12 @@ require("./errorHandler.js");
 // Verificar si la "Images" carpeta existe
 const folderPath = path.join(__dirname, 'Images');
 if (!fs.existsSync(folderPath)) {
-  fs.mkdirSync(folderPath);
-  console.log('La carpeta "Images" ha sido creada.');
+	fs.mkdirSync(folderPath);
+	console.log('La carpeta "Images" ha sido creada.');
 }
 
 io.use((socket, next) => {
-    sessionMiddleware(socket.request, {}, next);
+	sessionMiddleware(socket.request, {}, next);
 });
 
 io.on("connection", async socket => {
